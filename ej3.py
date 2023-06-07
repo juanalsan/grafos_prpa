@@ -69,8 +69,7 @@ calcula los 3-ciclos locales a cada uno de los ficheros de la lista de ficheros 
     """
     triciclos_locales_lst=[]
     for filename in filenames :
-        file_rdd= spc.textfile(filename)
-        aristas = file_rdd.map(distintas).filter(lambda x: x is not None).distinct()
+        aristas = distintas(spc,filename)
         conectados = aristas.groupByKey().mapValues(list).flatMap(pista)
         triciclos = conectados.groupByKey().mapValues(list).filter(condicion).flatMap(posibles_triciclos)
         triciclos_locales = triciclos.collect() 
@@ -88,4 +87,3 @@ if __name__ == "__main__":
         spc = SparkContext()
         filenames = sys.arv[1:]
         ejercicio3_grafos(spc, filenames)    
-

@@ -2,7 +2,6 @@ import sys
 from pyspark import SparkContext
 
 
-
 def mapper(line):
     edge = line.strip().split(',')
     n1  = edge[0]
@@ -83,9 +82,4 @@ if __name__ == "__main__":
     else:
         spc = SparkContext()
         filenames = sys.argv[1:] 
-        for i in range(len(sys.argv)):
-            if i != 0:
-                filenames.append(sys.argv[i])
-
-        ejercicio2_grafos(spc, filenames)    
-
+        ejercicio2_grafos(spc, filenames) 

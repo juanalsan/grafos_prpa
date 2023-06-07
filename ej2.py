@@ -2,9 +2,6 @@ import sys
 from pyspark import SparkContext
 
 
-spc = SparkContext()
-
-
 
 def mapper(line):
     edge = line.strip().split(',')
